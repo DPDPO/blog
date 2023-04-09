@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
@@ -11,6 +12,8 @@ export default function Home() {
       </Head>
 
       <main>
+        {/* <img src="/images/profile.png"></img> */}
+        <Image src="/images/profile.png" width={140} height={140}></Image>
         <h1 className={styles.title}>
           Welcome to <Link href="/posts/first-post">첫 번째 글</Link>
         </h1>
@@ -51,7 +54,7 @@ export default function Home() {
             </p>
             <p>
               Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>{" "}
+            </p>
             <p>
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
