@@ -3,13 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
-export default function getStaticProps () {
-  return{
-    props : {
-      allPostData
-    }
-  }
-}
+// export default function getStaticProps () {
+//   return{
+//     props : {
+//       allPostData
+//     }
+//   }
+// }
 
 export default function Home() {
   return (
@@ -23,10 +23,10 @@ export default function Home() {
         {/* <img src="/images/profile.png"></img> */}
         <Image src="/images/profile.png" width={140} height={140}></Image>
         <h1 className={styles.title}>
-          Welcome to <Link href="/posts/first-post">첫 번째 글</Link>
+          Welcome to <Link href="/posts/first-post">첫 번째</Link>
         </h1>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a href="/posts/first-post">Next.js!</a>
         </h1>
 
         <p className={styles.description}>
@@ -50,34 +50,6 @@ export default function Home() {
           >
             <h3>Examples &rarr;</h3>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
           </a>
         </div>
         <h1 className={styles.title}>
@@ -105,6 +77,7 @@ export default function Home() {
           justify-content: center;
           align-items: center;
         }
+
         footer {
           width: 100%;
           height: 100px;
