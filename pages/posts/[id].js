@@ -1,4 +1,4 @@
-import Date from "../../components/Date";
+import Date from "../../components/date";
 import Layout from "../../components/Layout";
 import { getPostData } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
