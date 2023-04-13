@@ -1,64 +1,47 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import Layout, { siteTitle } from "../components/layout";
-// import { getSortedPostsData } from '../lib/posts'
+// import { useEffect, useState } from 'react'
+import Layout, { siteTitle } from "../components/Layout";
+import { getSortedPostsData } from "../lib/posts";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import Date from "../components/Date";
 
-// export async function getServerSideProps() {
-//   const allPostsData = getSortedPostsData()
-
-//   return {
-//     props: {
-//       allPostsData,
-//     },
-//   }
-// }
-
-export async function getServerSideProps() {
-  const response = await fetch("http://localhost:3000/api/posts");
-  const json = await response.json();
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
 
   return {
     props: {
-      allPostsData: json.allPostsData,
+      allPostsData,
     },
   };
 }
 
-// getStaticProps는 빌드시 동작
-// export async function getStaticProps() {
-//   const allPostsData = getSortedPostsData();
-//   return {
-//     props: {
-//       allPostsData,
-//     },
-//   };
-// }
-
-// ssr
 // export async function getServerSideProps() {
-//   const allPostsData = getSortedPostsData();
+//   const response = await fetch('http://localhost:3000/api/posts')
+//   const json = await response.json()
+
 //   return {
 //     props: {
-//       allPostsData,
+//       allPostsData: json.allPostsData,
 //     },
-//   };
+//   }
 // }
 
 export default function Home({ allPostsData }) {
+  // const [allPostsData, setAllPostsData] = useState([])
+  // useEffect(() => {
+  //   fetch('/api/posts')
+  //     .then((res) => res.json())
+  //     .then((data) => setAllPostsData(data.allPostsData))
+  // }, [])
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Hello I am Park</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{" "}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
+        <p>I love coding 😍</p>
+        <p></p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
@@ -77,7 +60,6 @@ export default function Home({ allPostsData }) {
     </Layout>
   );
 }
-
 // csr
 // export default function Home() {
 //   const [allPostsData , setAllPostsData] = useState([])
@@ -113,4 +95,35 @@ export default function Home({ allPostsData }) {
 //       </section>
 //     </Layout>
 //   );
+// }
+
+// ssr
+// export async function getServerSideProps() {
+//   const allPostsData = getSortedPostsData();
+//   return {
+//     props: {
+//       allPostsData,
+//     },
+//   };
+// }
+
+// export async function getServerSideProps() {
+//   const response = await fetch("http://localhost:3000/api/posts");
+//   const json = await response.json();
+
+//   return {
+//     props: {
+//       allPostsData: json.allPostsData,
+//     },
+//   };
+// }
+
+//  getStaticProps는 빌드시 동작
+// export async function getStaticProps() {
+//   const allPostsData = getSortedPostsData();
+//   return {
+//     props: {
+//       allPostsData,
+//     },
+//   };
 // }
