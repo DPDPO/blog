@@ -37,14 +37,18 @@ export default function Home({ allPostsData }) {
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
+        <title>blog</title>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>I love coding 😍</p>
-        <p></p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <div className="BtnLa">
+          <h2 className={utilStyles.headingLg}>Blog</h2>
+          <Link href="/post/write">
+            <button className="Btn">write</button>
+          </Link>
+        </div>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>

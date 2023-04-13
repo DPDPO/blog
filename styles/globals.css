@@ -36,3 +36,12 @@ button {
   padding: 0.5rem 1rem;
   font-weight: bold;
 }
+.BtnLa {
+  /* background-color: black; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Btn {
+  border-radius: 10px;
+}
