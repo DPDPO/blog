@@ -40,7 +40,7 @@ export default function Write() {
   };
   return (
     <Layout>
-      <h1>Write a post</h1>
+      <div style={{ marginBottom: "30px", fontSize: "30px" }}>Write a post</div>
       <form onSubmit={handleSumbit}>
         <input type="text" name="id" placeholder="id" required ref={idRef} />
         <br />
