@@ -1,6 +1,7 @@
 import Layout from "../../components/Layout";
 import { useRef, useState } from "react";
 import Link from "next/link";
+
 export default function Write() {
   const idRef = useRef(undefined);
   const titleRef = useRef(undefined);
@@ -63,7 +64,11 @@ export default function Write() {
         <input type="submit" value="Create" />
       </form>
       {showLink && (
-        <Link href={`/posts/${idRef.current.value}`}>Created Post</Link>
+        <div style={{ width: "30px", marginTop: "30px" }}>
+          <Link href={`/posts/${idRef.current.value}`}>
+            <span style={{ color: "grey" }}>Created Post</span>
+          </Link>
+        </div>
       )}
     </Layout>
   );
