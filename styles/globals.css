@@ -52,12 +52,12 @@ button {
   justify-content: center;
   margin-top: 15px;
 }
-
+/* 
 ul {
   list-style: none;
   padding: 0;
   display: flex;
-}
+} */
 
 ul.pagination li {
   display: inline-block;

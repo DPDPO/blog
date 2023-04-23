@@ -39,9 +39,9 @@ export default function Home({ allPostsData }) {
 
   const [posts, setPosts] = useState([]);
   const [currentPosts, setCurrentPosts] = useState([]);
-  const initial = posts.slice(0, 10);
+  const initial = posts.slice(0, 5);
   const [page, setPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(10);
+  const [postPerPage, setPostPerPage] = useState(5);
   const indexOfLastPost = page * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const selecter = (value) => {
@@ -79,13 +79,14 @@ export default function Home({ allPostsData }) {
                   </small>
                 </li>
               ))
-            : currentPosts.map(({ id, title, body }) => (
-                <article key={id}>
-                  <h3>
-                    {id}. {title}
-                  </h3>
-                  {body.length >= 20 ? body.substr(0, 30) + "..." : body}
-                </article>
+            : currentPosts.map(({ id, date, title }) => (
+                <li className={utilStyles.listItem} key={id}>
+                  <Link href={`/posts/${id}`}>{title}</Link>
+                  <br />
+                  <small className={utilStyles.lightText}>
+                    <Date dateString={date} />
+                  </small>
+                </li>
               ))}
         </ul>
       </section>
