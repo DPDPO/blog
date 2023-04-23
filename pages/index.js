@@ -5,6 +5,8 @@ import { getSortedPostsData } from "../lib/posts";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import Date from "../components/date";
+import { useEffect, useState } from "react";
+import Paginate from "../components/Pagination";
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -34,6 +36,23 @@ export default function Home({ allPostsData }) {
   //     .then((res) => res.json())
   //     .then((data) => setAllPostsData(data.allPostsData))
   // }, [])
+
+  const [posts, setPosts] = useState([]);
+  const [currentPosts, setCurrentPosts] = useState([]);
+  const initial = posts.slice(0, 10);
+  const [page, setPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(10);
+  const indexOfLastPost = page * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const selecter = (value) => {
+    setPostPerPage(Number(value));
+    setPage(1);
+  };
+  useEffect(() => {
+    setPosts(allPostsData);
+    setCurrentPosts(posts.slice(indexOfFirstPost, indexOfLastPost));
+  }, [indexOfFirstPost, indexOfLastPost, page]);
+
   return (
     <Layout home>
       <Head>
@@ -50,17 +69,32 @@ export default function Home({ allPostsData }) {
           </Link>
         </div>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>{title}</Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
+          {currentPosts.length === 0
+            ? initial.map(({ id, date, title }) => (
+                <li className={utilStyles.listItem} key={id}>
+                  <Link href={`/posts/${id}`}>{title}</Link>
+                  <br />
+                  <small className={utilStyles.lightText}>
+                    <Date dateString={date} />
+                  </small>
+                </li>
+              ))
+            : currentPosts.map(({ id, title, body }) => (
+                <article key={id}>
+                  <h3>
+                    {id}. {title}
+                  </h3>
+                  {body.length >= 20 ? body.substr(0, 30) + "..." : body}
+                </article>
+              ))}
         </ul>
       </section>
+      <Paginate
+        totalCount={posts.length}
+        page={page}
+        postPerPage={postPerPage}
+        setPage={setPage}
+      />
     </Layout>
   );
 }
