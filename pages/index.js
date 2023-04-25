@@ -90,12 +90,14 @@ export default function Home({ allPostsData }) {
               ))}
         </ul>
       </section>
-      <Paginate
-        totalCount={posts.length}
-        page={page}
-        postPerPage={postPerPage}
-        setPage={setPage}
-      />
+      <div style={{ marginTop: "40px" }}>
+        <Paginate
+          totalCount={posts.length}
+          page={page}
+          postPerPage={postPerPage}
+          setPage={setPage}
+        />
+      </div>
     </Layout>
   );
 }
