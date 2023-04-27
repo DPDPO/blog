@@ -4,9 +4,10 @@ import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Utterances from "./Utterances";
 
 const name = "박승철";
-export const siteTitle = "ThCH BLOG";
+export const siteTitle = "THCH BLOG";
 
 export default function Layout({ children, home }) {
   const [theme, setTheme] = useState(() =>
@@ -53,6 +54,7 @@ export default function Layout({ children, home }) {
           />
           <meta name="og:title" content={siteTitle} />
           <meta name="twitter:card" content="summary_large_image" />
+          <title>{siteTitle}</title>
         </Head>
         <button className="w-12 px-2" onClick={handleClick}>
           {theme === "dark" ? (
@@ -96,9 +98,12 @@ export default function Layout({ children, home }) {
         </header>
         <main>{children}</main>
         {!home && (
-          <div className={styles.backToHome}>
-            <Link href="/">← Back to home</Link>
-          </div>
+          <>
+            <Utterances />
+            <div className={styles.backToHome}>
+              <Link href="/">← Back to home</Link>
+            </div>
+          </>
         )}
       </div>
     </div>
