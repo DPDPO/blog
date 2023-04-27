@@ -1,6 +1,6 @@
 import Head from "next/head";
 // import { useEffect, useState } from 'react'
-import Layout, { siteTitle } from "../components/Layout";
+import Layout from "../components/Layout";
 import { getSortedPostsData } from "../lib/posts";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
@@ -44,6 +44,7 @@ export default function Home({ allPostsData }) {
   const [postPerPage, setPostPerPage] = useState(5);
   const indexOfLastPost = page * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
+  // eslint-disable-next-line no-unused-vars
   const selecter = (value) => {
     setPostPerPage(Number(value));
     setPage(1);
