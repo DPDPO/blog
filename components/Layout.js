@@ -15,10 +15,10 @@ export default function Layout({ children, home }) {
       ? localStorage.getItem("theme") === "dark"
         ? "dark"
         : "light"
-      : "dark"
+      : "light"
   );
   // const [theme, setTheme] = useState("dark");
-
+  // useEffect(() => setTheme('light'), [])
   useEffect(() => {
     if (theme === "dark") {
       document.querySelector("body").classList.add("dark");
@@ -58,10 +58,17 @@ export default function Layout({ children, home }) {
         </Head>
         <button className="w-12 px-2" onClick={handleClick}>
           {theme === "dark" ? (
-            <img src="/images/light.svg" alt="light" />
+            <Image
+              width={300}
+              height={300}
+              src="/images/light.svg"
+              alt="light"
+            />
           ) : (
-            <img src="/images/dark.svg" alt="dark" />
+            <Image width={300} height={300} src="/images/dark.svg" alt="dark" />
           )}
+
+          {console.log(theme)}
         </button>
         <header className={styles.header}>
           {home ? (

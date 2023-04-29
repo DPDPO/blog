@@ -65,9 +65,9 @@ export default function Home({ allPostsData }) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <div className="BtnLa">
           <h2 className={utilStyles.headingLg}>Blog</h2>
-          <Link href="/post/write">
+          {/* <Link href="/post/write">
             <button className="Btn">write</button>
-          </Link>
+          </Link> */}
         </div>
         <ul className={utilStyles.list}>
           {currentPosts.length === 0
