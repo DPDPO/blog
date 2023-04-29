@@ -10,15 +10,19 @@ const name = "박승철";
 export const siteTitle = "THCH BLOG";
 
 export default function Layout({ children, home }) {
-  const [theme, setTheme] = useState(() =>
-    typeof window !== "undefined"
-      ? localStorage.getItem("theme") === "dark"
-        ? "dark"
-        : "light"
-      : "light"
+  const [theme, setTheme] = useState(
+    () =>
+      typeof window !== "undefined"
+        ? localStorage.getItem("theme") === "dark"
+          ? "dark"
+          : "light"
+        : "dark"
+    // "light"
   );
   // const [theme, setTheme] = useState("dark");
-  // useEffect(() => setTheme('light'), [])
+  // useEffect(() => {
+  //   localStorage.getItem("theme") === "dark" ? "dark" : "light";
+  // }, []);
   useEffect(() => {
     if (theme === "dark") {
       document.querySelector("body").classList.add("dark");
@@ -58,14 +62,9 @@ export default function Layout({ children, home }) {
         </Head>
         <button className="w-12 px-2" onClick={handleClick}>
           {theme === "dark" ? (
-            <Image
-              width={300}
-              height={300}
-              src="/images/light.svg"
-              alt="light"
-            />
+            <img width={300} height={300} src="/images/light.svg" alt="light" />
           ) : (
-            <Image width={300} height={300} src="/images/dark.svg" alt="dark" />
+            <img width={300} height={300} src="/images/dark.svg" alt="dark" />
           )}
 
           {console.log(theme)}
