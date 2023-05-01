@@ -1,4 +1,4 @@
-import Layout from "../../components/Layout";
+// import Layout from "../../components/Layout";
 import { useRef, useState } from "react";
 import Link from "next/link";
 
@@ -44,7 +44,7 @@ export default function Write() {
     }
   };
   return (
-    <Layout>
+    <>
       <div style={{ marginBottom: "30px", fontSize: "30px" }}>Write a post</div>
       <form onSubmit={handleSumbit}>
         <input type="text" name="id" placeholder="id" required ref={idRef} />
@@ -74,6 +74,6 @@ export default function Write() {
           </Link>
         </div>
       )}
-    </Layout>
+    </>
   );
 }

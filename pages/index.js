@@ -1,6 +1,6 @@
 import Head from "next/head";
 // import { useEffect, useState } from 'react'
-import Layout from "../components/Layout";
+// import Layout from "../components/Layout";
 import { getSortedPostsData } from "../lib/posts";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
@@ -55,7 +55,8 @@ export default function Home({ allPostsData }) {
   }, [indexOfFirstPost, indexOfLastPost, page]);
 
   return (
-    <Layout home>
+    // <Layout home>
+    <>
       <Head>
         <title>blog</title>
       </Head>
@@ -99,7 +100,8 @@ export default function Home({ allPostsData }) {
           setPage={setPage}
         />
       </div>
-    </Layout>
+      {/* </Layout> */}
+    </>
   );
 }
 // csr

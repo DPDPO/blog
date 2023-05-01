@@ -1,10 +1,10 @@
-import Date from "../../components/date";
-import Layout from "../../components/Layout";
+import Date from "@/components/date";
+// import Layout from "@/components/Layout";
 import { getPostData, getAllPostIds } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
 import { useRouter } from "next/router";
 import { MDXRemote } from "next-mdx-remote";
-import CodeBlock from "../../components/CodeBlock";
+import CodeBlock from "@/components/CodeBlock";
 // import Button from "../../components/Button";
 import dynamic from "next/dynamic";
 
@@ -45,7 +45,8 @@ export default function Post({ postData }) {
     return <div>Loading...</div>;
   }
   return (
-    <Layout>
+    // <Layout>
+    <>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
@@ -59,6 +60,7 @@ export default function Post({ postData }) {
           <MDXRemote {...postData.mdxSource} components={components} />
         )}
       </article>
-    </Layout>
+      {/* </Layout> */}
+    </>
   );
 }
