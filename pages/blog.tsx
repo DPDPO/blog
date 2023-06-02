@@ -1,10 +1,15 @@
+import BlogPost from "@/components/BlogPost";
 import Container from "@/components/container";
 import React from "react";
 
 const Blog = () => {
   return (
     <Container>
-      <span className={`font-bold`}>BLOG</span>
+      <div className={`mt-10 flex flex-col`}>
+        <BlogPost />
+        <BlogPost />
+        <BlogPost />
+      </div>
     </Container>
   );
 };
