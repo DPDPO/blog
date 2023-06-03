@@ -1,36 +1,37 @@
-import Container from "components/container";
 import { allPosts } from "contentlayer/generated";
-import { InferGetStaticPropsType } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from "next";
 import { useMDXComponent } from "next-contentlayer/hooks";
+import Utterances from "components/Utterances";
 
 const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const MDXComponent = useMDXComponent(post.body.code);
-
-  const customMeta = {
-    title: post.title,
-    description: post.description,
-    date: new Date(post.date).toISOString(),
-  };
-
-  return (
-    <Container customMeta={customMeta}>
-      <div className="mt-10 prose">
-        <h1 className="text-sky-700">{post.title}</h1>
-        <MDXComponent />
-      </div>
-    </Container>
-  );
+  // return (
+  //   <>
+  //     <div className="mt-10 pb-10 border-b-2 mb-10 prose dark:prose-invert">
+  //       <h1 className="mb-16">{post.title}</h1>
+  //       <MDXComponent />
+  //     </div>
+  //     <Utterances />
+  //   </>
+  // );
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: allPosts.map((p) => ({ params: { slug: p._raw.flattenedPath } })),
     fallback: false,
   };
 };
 
-export const getStaticProps = async ({ params }) => {
-  const post = allPosts.find((p) => p._raw.flattenedPath === params.slug);
+export const getStaticProps: GetStaticProps = async ({
+  params,
+}: GetStaticPropsContext) => {
+  const post = allPosts.find((p) => p._raw.flattenedPath === params?.slug);
   return {
     props: {
       post,

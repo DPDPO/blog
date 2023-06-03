@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 
 // eslint-disable-next-line no-undef
-import { withContentlayer } from "next-contentlayer";
+const { withContentlayer } = require("next-contentlayer");
 
 // eslint-disable-next-line no-undef
-export default withContentlayer({
+module.exports = withContentlayer({
   reactStrictMode: true,
 });
