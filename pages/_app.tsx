@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "components/Layout";
 import "../styles/globals.css";
 import { useRouter } from "next/router";
 import Custom404 from "./404";

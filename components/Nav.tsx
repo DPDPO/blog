@@ -1,17 +1,39 @@
-import navlinks from "pages/data/navlinks";
 import Link from "next/link";
-import React from "react";
+import navlinks from "components/data/navlinks";
 
-const Nav = () => {
+interface NavProps {
+  type: "toggle" | "normal";
+  onClick?: () => void;
+}
+
+export default function Nav({ type, onClick }: NavProps) {
+  const defaultStyleString =
+    "dark:text-white dark:hover:text-green-500 text-center transition duration-250 hover:scale-125 hover:text-green-500";
   return (
-    <nav>
-      {navlinks.map((nav) => (
-        <Link href={nav.link} key={nav.title}>
-          <a className={`mr-5`}>{nav.title}</a>
-        </Link>
-      ))}
-    </nav>
+    <>
+      {navlinks.map((item) => {
+        const { title, link } = item;
+        return (
+          <Link
+            href={link}
+            key={title}
+            className={
+              type === "normal"
+                ? defaultStyleString
+                : defaultStyleString + " text-lg py-4"
+            }
+            onClick={
+              onClick
+                ? onClick
+                : () => {
+                    return;
+                  }
+            }
+          >
+            {title}
+          </Link>
+        );
+      })}
+    </>
   );
-};
-
-export default Nav;
+}
