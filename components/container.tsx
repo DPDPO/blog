@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Nav from "./Nav";
 import React from "react";
-import metadata from "pages/data/metadata";
+import metadata from "components/data/metadata";
 import Image from "next/image";
 
 const Container = (props) => {
@@ -26,7 +26,7 @@ const Container = (props) => {
             {metadata.title}
           </span>
         </div>
-        <Nav />
+        <Nav type={"toggle"} />
       </header>
       <main className={`w-full max-w-3xl`}>{props.children}</main>
     </div>

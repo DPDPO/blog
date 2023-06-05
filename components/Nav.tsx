@@ -1,5 +1,5 @@
 import Link from "next/link";
-import navlinks from "pages/data/navlinks";
+import navlinks from "components/data/navlinks";
 
 interface NavProps {
   type: "toggle" | "normal";
