@@ -33,7 +33,7 @@ export default function Home({
         />
         <div className="min-w-[250] max-w-[350px]">
           <h2 className="font-bold text-xl">
-            완벽하지 않기 때문에 기록하려 합니다.
+            완벽하지 않아서 기록하려 합니다.
           </h2>
           <br />
 

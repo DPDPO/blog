@@ -1,16 +1,27 @@
-import BlogPost from "components/BlogPost";
+// import BlogPost from "components/BlogPost";
+import PostList from "components/PostList";
 import Container from "components/container";
-import { allPosts } from "contentlayer/generated";
+import { Post, allPosts } from "contentlayer/generated";
 // import { allPosts, Post } from "contentlayer/gernerated"
 // "./.contentlayer/generated"
 import { InferGetStaticPropsType } from "next";
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
+import { SearchInput } from "components/Input";
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [search, setSearch] = useState<string>("");
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value.toLowerCase());
+  };
   return (
     <Container>
       <div className={`mt-10 flex flex-col`}>
-        {posts.map((post) => (
+        <div className="mb-4">
+          글 목록 <span style={{ color: "skyblue" }}>({posts.length}) </span>
+        </div>
+        <SearchInput onChange={handleSearch} />
+        {/* {posts.map((post) => (
           <BlogPost
             date={post.date}
             title={post.title}
@@ -18,8 +29,13 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
             slug={post._raw.flattenedPath}
             key={post._id}
           />
-        ))}
+        ))} */}
       </div>
+      <PostList
+        posts={(posts as Post[]).filter((post) =>
+          post.title.toLowerCase().includes(search)
+        )}
+      />
     </Container>
   );
 };

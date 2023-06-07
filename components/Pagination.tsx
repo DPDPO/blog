@@ -2,7 +2,7 @@ import React from "react";
 import Pagination from "react-js-pagination";
 
 const Paginate = ({ totalCount, page, setPage, postPerPage }) => {
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setPage(page);
   };
 

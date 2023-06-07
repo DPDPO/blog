@@ -53,24 +53,21 @@ export default function Header() {
       </Head>
       <header
         ref={headerRef}
-        className="sticky top-0 left-0 w-full z-10 h-20 font-mono transition duration-500 bg-white dark:bg-[#111111]"
+        className="sticky top-0 left-0 w-full z-10 h-20 font-mono transition duration-500 bg-white dark:bg-[#111111] border-dashed border-b border-black dark:border-white"
       >
         <div className="text-black max-w-screen-md h-20 flex flex-nowrap items-center justify-between m-auto px-8">
-          {theme === "dark" ? (
-            <Image
-              src="/images/logoDarkMode.png"
-              alt="profile"
-              width={180}
-              height={30}
-            />
-          ) : (
-            <Image
-              src="/images/logoLightMode.png"
-              alt="profile"
-              width={180}
-              height={30}
-            />
-          )}
+          <a
+            target="_blank"
+            href="https://codesandbox.io/s/?utm_source=landingpage"
+            rel="noopener noreferrer"
+          >
+            <span
+              className="hvr-curl-top-left dark:text-white"
+              style={{ fontSize: "20px" }}
+            >
+              Coding
+            </span>
+          </a>
 
           <div className="flex flex-nowrap gap-8 items-center">
             <button type="button" className="m-0 p-0" onClick={handleTheme}>

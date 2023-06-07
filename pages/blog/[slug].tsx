@@ -13,7 +13,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <div className="mt-10 pb-10 border-b-2 mb-10 prose dark:prose-invert">
-        <h1 style={{ fontSize: "20px" }}>{post.title}</h1>
+        <h1 style={{ fontSize: "40px" }}>{post.title}</h1>
         <div className="mb-16 text-gray-400">{post.date}</div>
         <MDXComponent />
       </div>
