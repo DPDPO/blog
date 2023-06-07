@@ -3,7 +3,7 @@ const { withContentlayer } = require("next-contentlayer");
 
 const nextConfig = {
   reactStrictMode: true,
-  distDir: "build",
+  // distDir: "build",
   experimental: {
     appDir: true,
   },
