@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import Nav from "./Nav";
 import Image from "next/image";
 import Head from "next/head";
-import Link from "next/link";
 
 type Theme = null | "dark" | "light";
 
@@ -57,35 +56,34 @@ export default function Header() {
         className="sticky top-0 left-0 w-full z-10 h-20 font-mono transition duration-500 bg-white dark:bg-[#111111]"
       >
         <div className="text-black max-w-screen-md h-20 flex flex-nowrap items-center justify-between m-auto px-8">
-          <Link href="/">
-            {theme === "dark" ? (
-              <Image
-                src="/images/logoDarkMode.png"
-                alt="profile"
-                width={180}
-                height={30}
-              />
-            ) : (
-              <Image
-                src="/images/logoLightMode.png"
-                alt="profile"
-                width={180}
-                height={30}
-              />
-            )}
-          </Link>
+          {theme === "dark" ? (
+            <Image
+              src="/images/logoDarkMode.png"
+              alt="profile"
+              width={180}
+              height={30}
+            />
+          ) : (
+            <Image
+              src="/images/logoLightMode.png"
+              alt="profile"
+              width={180}
+              height={30}
+            />
+          )}
+
           <div className="flex flex-nowrap gap-8 items-center">
             <button type="button" className="m-0 p-0" onClick={handleTheme}>
               {theme === "dark" ? (
                 <Image
-                  src="/images/moon.svg"
+                  src="/images/light.svg"
                   alt="dark mode"
                   width={30}
                   height={30}
                 />
               ) : (
                 <Image
-                  src="/images/sun.svg"
+                  src="/images/dark.svg"
                   alt="light mode"
                   width={30}
                   height={30}

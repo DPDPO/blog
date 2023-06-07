@@ -1,9 +1,9 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
 
-// eslint-disable-next-line no-undef
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withContentlayer } = require("next-contentlayer");
 
-// eslint-disable-next-line no-undef
 module.exports = withContentlayer({
   reactStrictMode: true,
 });

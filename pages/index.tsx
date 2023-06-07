@@ -21,26 +21,26 @@ export default function Home({
   return (
     <>
       <section className="my-10">
-        <h1 className="font-bold text-2xl sm:text-4xl font-mono">
-          🧑🏻‍💻 PSC BLOG
-        </h1>
+        <h1 className="font-bold text-2xl sm:text-4xl font-mono">PSC BLOG</h1>
       </section>
       <section className="flex justify-center gap-8 items-center flex-wrap">
         <Image
-          src="/images/profile.jpeg"
-          alt="profile"
+          src="/images/main.png"
+          alt=" 제작자: surang - Flaticon"
           width={300}
           height={300}
           className="rounded-2xl"
         />
-        <div className="min-w-[250] max-w-[300px]">
-          <h2 className="font-bold text-xl">프론트엔드 개발자 박승철입니다.</h2>
+        <div className="min-w-[250] max-w-[350px]">
+          <h2 className="font-bold text-xl">
+            완벽하지 않기 때문에 기록하려 합니다.
+          </h2>
           <br />
 
           <div className="flex gap-5 items-center mt-4">
             <a
-              href=""
-              className="flex gap-2 items-center hover:scale-110 transition-transform duration-500 hover:text-green-500 hover:fill-green-500 dark:fill-white dark:hover:fill-green-500"
+              href="mailto:whirled7@gmail.com"
+              className="flex gap-2 items-center hover:scale-110 transition-transform duration-500 hover:text-blue-500 hover:fill-blue-500 dark:fill-white dark:hover:fill-blue-500"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -53,8 +53,8 @@ export default function Home({
               <p>Mail</p>
             </a>
             <a
-              href=""
-              className="flex gap-2 items-center transition-transform duration-500 hover:scale-110 hover:text-green-500 hover:fill-green-500 dark:fill-white dark:hover:fill-green-500"
+              href="https://github.com/DPDPO"
+              className="flex gap-2 items-center transition-transform duration-500 hover:scale-110 hover:text-blue-500 hover:fill-blue-500 dark:fill-white dark:hover:fill-blue-500"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

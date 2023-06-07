@@ -1,0 +1,107 @@
+---
+title: Proxy
+date: 2022-03-17
+description: 프록시 설정
+---
+
+### webpack dev server proxy
+
+웹팩 개발서버의 proxy 설정은 원래 웹팩 설정을 통해서 적용을 하지만, CRA 를 통해 만든 리액트 프로젝트에서는 package.json 에서 "proxy" 값을 설정하여 쉽게 적용할 수 있도록 구성이 되어있다.
+
+```tsx
+...
+"browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+	"proxy" : "우회할 API 주소" //이런식으로 보기 쉽게 맨마지막에 작성
+}
+```
+
+그리고 기존의 fetch, 혹은 axios를 통해 요청하던 부분에서 도메인 부분을 제거한다
+
+```tsx
+export async function getAllfetch() {
+
+    const response = await fetch('우회할 api주소/params');
+    .then(() => {
+			...
+		})
+}
+
+export async function getAllfetch() {
+
+    const response = await fetch('/params');
+    .then(() => {
+			...
+		})
+}
+```
+
+# React Proxy 사용법
+
+http-proxy-middleware 라이브러리 설치
+
+```tsx
+npm install http-proxy-middleware --save
+```
+
+그리고 React App의 src 파일 안에서 setupProxy.js 파일을 생성하고, 안에서 설치한 라이브러리 파일을 불러온 다음, 아래와 같이 작성
+
+```tsx
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+module.exports = function(app) {
+  app.use(
+    '/api', //proxy가 필요한 path prameter를 입력합니다.
+    createProxyMiddleware({
+      target: 'http://localhost:5000', //타겟이 되는 api url를 입력합니다.
+      changeOrigin: true, //대상 서버 구성에 따라 호스트 헤더가 변경되도록 설정하는 부분입니다.
+    })
+  );
+};
+
+//여러개 설정
+module.exports = function(app) {
+  app.use(
+    '/api', //proxy가 필요한 path prameter를 입력합니다.
+    createProxyMiddleware({
+      target: 'http://localhost:5000', //타겟이 되는 api url를 입력합니다.
+      changeOrigin: true, //대상 서버 구성에 따라 호스트 헤더가 변경되도록 설정하는 부분입니다.
+    })
+  );
+    app.use(
+    '/api2', //proxy가 필요한 path prameter를 입력합니다.
+    createProxyMiddleware({
+      target: 'http://localhost:6000', //타겟이 되는 api url를 입력합니다.
+      changeOrigin: true, //대상 서버 구성에 따라 호스트 헤더가 변경되도록 설정하는 부분입니다.
+    })
+  );
+};
+
+//또는
+module.exports = function(app) {
+  app.use(
+    ['/api', '/api2' , '/api3'] //proxy가 필요한 path prameter를 입력합니다.
+    createProxyMiddleware({
+      target: 'http://localhost:5000', //타겟이 되는 api url를 입력합니다.
+      changeOrigin: true, //대상 서버 구성에 따라 호스트 헤더가 변경되도록 설정하는 부분입니다.
+      router : {
+      '/api2': 'http://localhost:6000'
+      '/api3': 'http://localhost:7000'
+      }
+    }
+    })
+  );
+
+```
+
+webpack dev server 에서 제공하는 proxy 기능을 사용할 때와 동일하게 기존의 fetch, 혹은 axios를 통해 요청하던 부분에서 도메인 부분을 제거한다.
