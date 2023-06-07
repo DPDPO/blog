@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const Custom404 = () => {
+const Custom404 = (statusCode: any) => {
   return (
     <div
       style={{
