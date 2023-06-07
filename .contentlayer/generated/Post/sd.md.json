@@ -1,0 +1,18 @@
+{
+  "title": "test",
+  "date": "2023-04-21T00:00:00.000Z",
+  "body": {
+    "raw": "weqw",
+    "html": "<p>weqw</p>"
+  },
+  "_id": "sd.md",
+  "_raw": {
+    "sourceFilePath": "sd.md",
+    "sourceFileName": "sd.md",
+    "sourceFileDir": ".",
+    "contentType": "markdown",
+    "flattenedPath": "sd"
+  },
+  "type": "Post",
+  "url": "/posts/sd"
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../contentlayer.config.ts"],
+  "sourcesContent": ["import { defineDocumentType, makeSource } from \"@contentlayer/source-files\";\nimport rehypePrettyCode from \"rehype-pretty-code\";\n// import remarkGfm from \"remark-gfm\";\n\nconst options = {\n  theme: \"one-dark-pro\",\n};\nexport const Post = defineDocumentType(() => ({\n  name: \"Post\",\n  contentType: \"mdx\",\n  filePathPattern: `**/*.mdx`,\n  fields: {\n    title: { type: \"string\", required: true },\n    date: { type: \"string\", required: true },\n    description: { type: \"string\", required: true },\n  },\n}));\n\nexport default makeSource({\n  contentDirPath: \"posts\",\n  documentTypes: [Post],\n  mdx: {\n    // remarkPlugins: [remarkGfm],\n    rehypePlugins: [[rehypePrettyCode, options]],\n  },\n});\n"],
+  "mappings": ";AAAA,SAAS,oBAAoB,kBAAkB;AAC/C,OAAO,sBAAsB;AAG7B,IAAM,UAAU;AAAA,EACd,OAAO;AACT;AACO,IAAM,OAAO,mBAAmB,OAAO;AAAA,EAC5C,MAAM;AAAA,EACN,aAAa;AAAA,EACb,iBAAiB;AAAA,EACjB,QAAQ;AAAA,IACN,OAAO,EAAE,MAAM,UAAU,UAAU,KAAK;AAAA,IACxC,MAAM,EAAE,MAAM,UAAU,UAAU,KAAK;AAAA,IACvC,aAAa,EAAE,MAAM,UAAU,UAAU,KAAK;AAAA,EAChD;AACF,EAAE;AAEF,IAAO,8BAAQ,WAAW;AAAA,EACxB,gBAAgB;AAAA,EAChB,eAAe,CAAC,IAAI;AAAA,EACpB,KAAK;AAAA;AAAA,IAEH,eAAe,CAAC,CAAC,kBAAkB,OAAO,CAAC;AAAA,EAC7C;AACF,CAAC;",
+  "names": []
+}

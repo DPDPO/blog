@@ -1,0 +1,18 @@
+{
+  "title": "Test Post",
+  "date": "2023-04-13T00:00:00.000Z",
+  "body": {
+    "raw": "\n### hello\n\nPSC\n",
+    "html": "<h3>hello</h3>\n<p>PSC</p>"
+  },
+  "_id": "test.md",
+  "_raw": {
+    "sourceFilePath": "test.md",
+    "sourceFileName": "test.md",
+    "sourceFileDir": ".",
+    "contentType": "markdown",
+    "flattenedPath": "test"
+  },
+  "type": "Post",
+  "url": "/posts/test"
+}
