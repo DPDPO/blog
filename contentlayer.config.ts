@@ -1,24 +1,26 @@
 import { defineDocumentType, makeSource } from "@contentlayer/source-files";
 import rehypePrettyCode from "rehype-pretty-code";
+// import remarkGfm from "remark-gfm";
 
 const options = {
-  theme: "github-dark",
+  theme: "one-dark-pro",
 };
 export const Post = defineDocumentType(() => ({
-  name: 'Post',
-  contentType: 'mdx',
+  name: "Post",
+  contentType: "mdx",
   filePathPattern: `**/*.mdx`,
   fields: {
-    title: { type: 'string', required: true },
-    date: { type: 'string', required: true },
-    description: { type: 'string', required: true },
+    title: { type: "string", required: true },
+    date: { type: "string", required: true },
+    description: { type: "string", required: true },
   },
 }));
 
 export default makeSource({
-  contentDirPath: 'posts',
+  contentDirPath: "posts",
   documentTypes: [Post],
   mdx: {
+    // remarkPlugins: [remarkGfm],
     rehypePlugins: [[rehypePrettyCode, options]],
   },
 });
