@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "strict": false,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -15,9 +19,17 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ]
       // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
@@ -25,6 +37,10 @@
     "**/*.tsx",
     ".contentlayer/generated"
     // ^^^^^^^^^^^^^^^^^^^^^^
+    ,
+    "build/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -6,11 +6,12 @@ module.exports = {
     node: true,
   },
   extends: [
+    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended", // 해당 플러그인의 권장 규칙을 사용합니다.
     "plugin:prettier/recommended",
-    "next",
+    // ["next/babel", "next/core-web-vitals"], //error 수정
   ],
   parser: "@typescript-eslint/parser", // ESLint 파서를 지정합니다.
   parserOptions: {
