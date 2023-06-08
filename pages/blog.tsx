@@ -7,7 +7,6 @@ import { Post, allPosts } from "contentlayer/generated";
 import { InferGetStaticPropsType } from "next";
 import React, { ChangeEvent, useState } from "react";
 import { SearchInput } from "components/Input";
-import Paginate from "components/Pagination";
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [search, setSearch] = useState<string>("");
@@ -28,12 +27,6 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           post.title.toLowerCase().includes(search)
         )}
       />
-      {/* <Paginate
-        totalCount={posts}
-        page={undefined}
-        setPage={undefined}
-        postPerPage={undefined}
-      /> */}
     </Container>
   );
 };
