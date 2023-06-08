@@ -1,9 +1,6 @@
-// import BlogPost from "components/BlogPost";
 import PostList from "components/PostList";
 import Container from "components/container";
 import { Post, allPosts } from "contentlayer/generated";
-// import { allPosts, Post } from "contentlayer/gernerated"
-// "./.contentlayer/generated"
 import { InferGetStaticPropsType } from "next";
 import React, { ChangeEvent, useState } from "react";
 import { SearchInput } from "components/Input";
