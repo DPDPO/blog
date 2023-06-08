@@ -21,7 +21,9 @@ export default function Home({
   return (
     <>
       <section className="my-10">
-        <h1 className="font-bold text-2xl sm:text-4xl font-mono">PSC BLOG</h1>
+        <h1 className="font-bold text-2xl sm:text-4xl font-mono text-blue-500">
+          PSC BLOG
+        </h1>
       </section>
       <section className="flex justify-center gap-8 items-center flex-wrap">
         <Image
@@ -69,9 +71,9 @@ export default function Home({
           </div>
         </div>
       </section>
-      <section className="mt-12 mb-10">
-        <h1 className="font-bold text-2xl sm:text-4xl font-mono">
-          📝 최근 게시물
+      <section className="mt-16 mb-6">
+        <h1 className="font-bold text-2xl sm:text-4xl font-mono text-blue-500">
+          최근 게시물
         </h1>
       </section>
       <PostList posts={posts} />

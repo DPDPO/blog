@@ -14,10 +14,12 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Container>
       <div className={`mt-10 flex flex-col`}>
-        <div className="mb-4">
+        <div className="ml-1 mb-3">
           글 목록 <span style={{ color: "skyblue" }}>({posts.length}) </span>
         </div>
-        <SearchInput onChange={handleSearch} />
+        <div className="mb-4">
+          <SearchInput onChange={handleSearch} />
+        </div>
       </div>
       <PostList
         posts={(posts as Post[]).filter((post) =>
