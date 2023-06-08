@@ -1,0 +1,197 @@
+---
+title: Redux
+date: 2023-02-21
+description: 상태관리
+---
+
+**Redux는 다음과 같은 순서로 상태를 관리**
+
+<br />
+
+1.상태가 변경되어야 하는 이벤트가 발생하면, 변경될 상태에 대한 정보가 담긴 Action 객체가 생성된다
+
+2.이 Action 객체는 Dispatch 함수의 인자로 전달된다.
+
+3.Dispatch 함수는 Action 객체를 Reducer 함수로 전달해준다.
+
+4.Reducer 함수는 Action 객체의 값을 확인하고, 그 값에 따라 전역 상태 저장소 Store의 상태를 변경한다.
+
+5.상태가 변경되면, React는 화면을 다시 렌더링 한다.
+Redux에서는 Action → Dispatch → Reducer → Store 순서로 데이터가 단방향으로 흐르게 된다.
+
+<br />
+<br />
+
+### **Store**
+
+Store는 상태가 관리되는 오직 하나뿐인 저장소의 역할을 한다. Redux 앱의 state가 저장되어 있는 공간이며, 아래 코드와 같이 createStore 메서드를 활용해 Reducer를 연결해서 Store를 생성할 수 있다.
+
+```tsx
+import { createStore } from "redux";
+
+const store = createStore(rootReducer);
+```
+
+<br />
+<br />
+
+### **Reducer**
+
+Reducer는 Dispatch에게서 전달받은 Action 객체의 type 값에 따라서 상태를 변경시키는 함수.
+
+<br />
+
+```tsx
+const count = 1;
+
+// Reducer를 생성할 때에는 초기 상태를 인자로 요구한다.
+const counterReducer = (state = count, action) => {
+  // Action 객체의 type 값에 따라 분기하는 switch 조건문
+  switch (action.type) {
+    //action === 'INCREASE'일 경우
+    case "INCREASE":
+      return state + 1;
+
+    // action === 'DECREASE'일 경우
+    case "DECREASE":
+      return state - 1;
+
+    // action === 'SET_NUMBER'일 경우
+    case "SET_NUMBER":
+      return action.payload;
+
+    // 해당 되는 경우가 없을 땐 기존 상태를 그대로 리턴
+    default:
+      return state;
+  }
+};
+// Reducer가 리턴하는 값이 새로운 상태가 된다.
+```
+
+<br />
+<br />
+
+Reducer는 순수함수여야 된다. 외부 요인으로 인해 기대한 값이 아닌 이상한 값으로 상태가 변경되는 일이 없어야하기 때문.
+
+<br />
+<br />
+
+### **Action**
+
+<br />
+
+```tsx
+// payload가 필요 없는 경우
+{ type: 'INCREASE' }
+
+// payload가 필요한 경우
+{ type: 'SET_NUMBER', payload: 5 }
+```
+
+Action은 말 그대로 어떤 액션을 취할 것인지 정의해 놓은 객체
+
+여기서 type 은 필수로 지정을 해 주어야 한다. 해당 Action 객체가 어떤 동작을 하는지 명시해주는 역할을 하기 때문이며, 대문자와 Snake Case로 작성한다. 여기에 필요에 따라 payload 를 작성해 구체적인 값을 전달한다.
+
+```tsx
+// payload가 필요 없는 경우
+const increase = () => {
+  return {
+    type: "INCREASE",
+  };
+};
+
+// payload가 필요한 경우
+const setNumber = (num) => {
+  return {
+    type: "SET_NUMBER",
+    payload: num,
+  };
+};
+```
+
+<br />
+
+보통 Action을 직접 작성하기보다는 Action 객체를 생성하는 함수를 만들어 사용하는 경우가 많다. 이러한 함수를 액션 생성자(Action Creator)라고도 한다.
+
+<br />
+<br />
+
+### **Dispatch**
+
+Dispatch는 Reducer로 Action을 전달해주는 함수. Dispatch의 전달인자로 Action 객체가 전달된다.
+
+<br />
+
+```tsx
+// Action 객체를 직접 작성하는 경우
+dispatch({ type: "INCREASE" });
+dispatch({ type: "SET_NUMBER", payload: 5 });
+
+// 액션 생성자(Action Creator)를 사용하는 경우
+dispatch(increase());
+dispatch(setNumber(5));
+```
+
+<br />
+
+Action 객체를 전달받은 Dispatch 함수는 Reducer를 호출한다.
+
+Store, Reducer, Action, Dispatch 코드를 만든후 연결시킬땐 Redux Hooks를 이용해야 된다.
+
+<br />
+<br />
+
+### **Redux Hooks**
+
+Redux Hooks는 React-Redux에서 Redux를 사용할 때 활용할 수 있는 Hooks 메서드를 제공한다. 크게 useSelector(), useDispatch() 이 두 가지의 메서드가 있다.
+
+<br />
+
+useDispatch() 는 Action 객체를 Reducer로 전달해 주는 Dispatch 함수를 반환하는 메서드다.
+위에서 Dispatch를 설명할 때 사용한 dispatch 함수도 useDispatch()를 사용해서 만든
+것.
+
+<br />
+<br />
+```tsx import {useDispatch} from "react-redux";
+
+const dispatch = useDispatch();
+dispatch(increase());
+console.log(counter); // 2
+
+dispatch(setNumber(5));
+console.log(counter); // 5
+
+````
+<br/>
+<br/>
+#### useSelector()
+
+useSelector()는 컴포넌트와 state를 연결하여 Redux의 state에 접근할 수 있게 해주는 메서드다.
+
+<br />
+<br />
+
+```tsx
+// Redux Hooks 메서드는 'redux'가 아니라 'react-redux'에서 불러옵니다.
+import { useSelector } from "react-redux";
+const counter = useSelector((state) => state);
+console.log(counter); // 1
+````
+
+<br />
+<br />
+## Redux의 세 가지 원칙
+
+**1.Single source of truth**
+동일한 데이터는 항상 같은 곳에서 가지고 와야 한다는 의미이다. 즉, Redux에는 데이터를 저장하는 Store라는 단 하나뿐인 공간이 있음과 연결이 되는 원칙.
+
+<br />
+
+**2.State is read-only**
+상태는 읽기 전용이라는 뜻으로, React에서 상태갱신함수로만 상태를 변경할 수 있었던 것처럼, Redux의 상태도 직접 변경할 수 없음을 의미한다. 즉, Action 객체가 있어야만 상태를 변경할 수 있음과 연결되는 원칙이다.
+
+<br />
+
+**3.Changes are made with pure functions**
+변경은 순수함수로만 가능하다는 뜻으로, 상태가 엉뚱한 값으로 변경되는 일이 없도록 순수함수로 작성되어야하는 Reducer와 연결되는 원칙이다.

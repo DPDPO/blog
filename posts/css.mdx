@@ -1,0 +1,36 @@
+---
+title: CSS(1)
+date: 2023-02-28
+description: css 관련 내용
+---
+
+가상선택자 after를 사용할때
+꼭 content속석에 빈값을 넣어줘야 한다
+
+```tsx
+content: "";
+```
+
+<br />
+<br />
+
+div 줄바꿈을 해야할때
+div의 스타일을 정해주는 부분에서
+
+```tsx
+ word-break:break-all; //추가
+```
+
+<br />
+<br />
+
+Footer를 하단에 고정시킬때
+레이아웃을
+
+```tsx
+height: auto;
+min-height: 100%;
+```
+
+<br />
+Footer는 height에 원하는 높이만큼 주고 position은 relative로 해준다

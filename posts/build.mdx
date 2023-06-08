@@ -1,0 +1,19 @@
+---
+title: Build optimization failed - found page without a React Component as default export in pages
+date: 2023-04-05
+description: build error
+---
+
+next에서 build시 볼 수 있는 에러인데
+
+React 컴포넌트가 아닌 것을 export 하는 페이지는 렌더링 될 때 오류를 일으키거나
+
+빌드 성능을 저하시킬 수 있다고 한다.
+
+<br />
+
+<br />
+
+pages 폴더 안에 React 컴포넌트 외 다른 파일이 존재하기 때문에 발생한 문제인데
+
+page안에 data에 있는 파일들을 page바깥 컴포넌트 파일에 이동시켜 해결했다.

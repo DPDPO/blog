@@ -1,0 +1,54 @@
+---
+title: Pagenation 데이터 처리
+date: 2023-05-11
+description: pagination error
+---
+
+상품목록을 요청할때 잘불러와 지는데 카테고리 ALL에서 페이지도 변경하면 activepage가 변경되어 카테고리를 바꿀 때 skip된 상태로 변경돼서 목록이 안불러와지는 현상이 있었다.
+
+<br />
+```tsx
+const { data: products } = useQuery<
+    { items: products[] },
+    unknown,
+    products[]
+  >(
+    [
+      `/api/get-products?skip=${
+        TAKE * (activePage - 1)
+      }&take=${TAKE}&category=${selectCategory}&orderBy=${selectedFilter}&contains=${debouncedKeyword}`,
+    ],
+    () =>
+      fetch(
+        `/api/get-products?skip=${
+          TAKE * (activePage - 1)
+        }&take=${TAKE}&category=${selectCategory}&orderBy=${selectedFilter}&contains=${debouncedKeyword}`
+      ).then((res) => res.json()),
+    {
+      select: (data) => data.items,
+    }
+  );
+...
+{categories && (
+        <div className="mb-4">
+          <SegmentedControl
+            value={selectCategory}
+            onChange={setSelectCategory}
+            onClick={() => setPage(1)}
+            data={[
+              { label: "ALL", value: "-1" },
+              ...categories.map((category) => ({
+                label: category.name,
+                value: String(category.id),
+              })),
+            ]}
+            color="dark"
+          />
+        </div>
+      )}
+```
+
+<br />
+<br />
+처음에 고정값인 TAKE를 바꿔 해결하려 했는데 카테고리를 변경할때 activePage를
+1으로 만들어 skip을 0으로 만들어 주는 방식으로 해결했다.

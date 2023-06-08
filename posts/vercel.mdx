@@ -1,0 +1,24 @@
+---
+title: vercel 배포오류
+date: 2023-05-26
+description: vercel
+---
+
+vercel에 배포한뒤 페이지에 들어가보니 api요청되지 않아 vercel logs에 들어가 보니..
+
+<br />
+<br />
+
+Error: Prisma has detected that this project was built on Vercel,
+which caches dependencies. This leads to an outdated Prisma Client
+because Prisma's auto-generation isn't triggered. To fix this, make
+sure to run the `prisma generate` command during the build process.
+
+<br />
+<br />
+라는 오류가 떴다. Prisma Client가 데이터베이스 스키마와 동기화되지 않는 문제
+같았다. 찾아보니 여러가지 해결 방법이 있었지만
+<br />
+<br />
+`My Project - Setting - general - Build & Development Settings`의 `Build commned`를
+npx prisma generate && next build로 수정해서 해결했다.

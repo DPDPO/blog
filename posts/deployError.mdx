@@ -1,0 +1,29 @@
+---
+title: The file "/vercel/path0/.next/routes-manifest.json" couldn't be found.
+date: 2023-03-25
+description: deploy error
+---
+
+vercel에서 배포했을때 발생한 오류인데
+
+next 설정에서
+
+distDir: "build"를 삭제해서 해결했다.
+
+<br />
+
+next.config.js
+
+```tsx
+/** @type {import('next').NextConfig} */
+const { withContentlayer } = require("next-contentlayer");
+
+const nextConfig = {
+  reactStrictMode: true,
+  experimental: {
+    appDir: true,
+  },
+};
+
+module.exports = withContentlayer(nextConfig);
+```

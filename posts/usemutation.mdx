@@ -1,0 +1,41 @@
+---
+title: useMutation 새로고침시 적용되는 문제
+date: 2023-05-18
+description: data
+---
+
+useQuery 와 다르게 mutation은 데이터를 생성 / 업데이트 / 삭제 할 때 사용 되는데
+
+장바구니에 담고 카트페이지로 라우터 푸쉬하면 바로 적용이 안되는 현상이 있었다.
+
+<br />
+<br />
+```tsx
+const { mutate: addCart } = useMutation<
+    unknown,
+    unknown,
+    Omit<Cart, "id" | "userId">,
+    any
+  >(
+    (item) =>
+      fetch(`/api/add-cart`, {
+        method: "POST",
+        body: JSON.stringify({ item }),
+      })
+        .then((res) => res.json())
+        .then((data) => data.items),
+    {
+      onMutate: () => {
+        queryClient.invalidateQueries([CART_QUERY_KEY]);
+      },
+      onSuccess: () => {
+        router.push("/cart");
+      },
+    }
+  );
+```
+
+<br />
+<br />
+onMutate와 onSuccess를 사용해서 데이터를 먼저 넘기고 라우터를 변경하는 방법을
+사용했다.

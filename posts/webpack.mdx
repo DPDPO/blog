@@ -1,0 +1,153 @@
+---
+title: webpack
+date: 2023-06-05
+description: bundling
+---
+
+**번들러**
+
+<br />
+Node.js는 브라우저 외의 환경에서 Javascript를 동작하게 해주며 Javascript개발자들은
+여러 툴을 만들고
+
+npm을 통해 배포를 하기가 쉬워진다. 이러한 상황에서 번들러라는 소프트웨어가 나오는데,
+
+번들러는 브라우저가 script를 부르기전에 미리 하나의 파일로 만들어 둔다.
+
+그럼 HTML은 하나의 JS파일만 부르면 된다. 물론 번들링이라는 행위에서 문제가 없지는 않지만.
+
+번들링을 사용하며 module이라는 스펙을 사용할 수 없는 환경에서도 사용할 수 있게 됐다.
+
+<br />
+-번들러 종류
+
+현재 사용되는 번들러들은 webpack, parcel, rollup 등이 있다.
+
+<br />
+실제 번들러는 여러 JS파일을 하나로 합치는것 뿐만아니라 .jpg, .png, .sass 등등 여러
+유형의 파일들을 하나로 합쳐주고 트랜스파일러 작업 또한 babel과 연동하여 ECMA2015,
+TS, React 등을 지원한다.
+
+<br />
+<br />
+babel 설치하기
+<br />
+yarn add @babel/core @babel/cli @babel/preset-env --dev
+<br />
+@babel/core : 바벨의 핵심 기능들을 포함 <br />
+@babel/cli : 터미널에서 바벨 명령어를 사용할 수 있게 도와줌
+<br /> @babel/preset-env : 코드 구문 변환 설정을 도와줌 (지원 브라우저 점유율,
+호환성 설정 등)
+<br />
+.babelrc파일을 생성 후 presets를 작성.
+```tsx
+{
+  "presets": ["@babel/preset-env"]
+}
+```
+<br />
+<br />
+**웹팩 설치**<br />
+yarn add webpack webpack-cli webpack-dev-server --dev<br />
+yarn add babel-loader style-loader css-loader --dev<br />
+yarn add html-webpack-plugin --dev <br />
+
+<br />
+webpack: 웹팩 모듈
+<br /> webpack-cli: 터미널에서 웹팩 명령어를 사용할 수 있게 도와줌 <br />
+webpack-dev-server: nodemon과 같이 웹팩 환경에서 개발서버를 생성 <br />
+babel-loader: 웹팩과 바벨을 연동 <br />
+css-loader: 웹팩이 css파일을 읽을 수 있도록 도와줌
+<br /> html-webpack-plugin: 번들링된 html파일에 css와 js파일들을 추가해줌
+<br />
+설치후 webpack.config.js파일 설정
+<br />
+
+```tsx
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+module.exports = {
+  mode: "development",
+  entry: "./src/index.js",
+  output: {
+    filename: "bundle.js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+      {
+        test: /\.s?css$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: {
+              minimize: true,
+            },
+          },
+        ],
+      },
+    ],
+  },
+
+  devServer: {
+    host: "localhost",
+    port: 3000,
+    open: true,
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+    }),
+  ],
+};
+```
+
+mode: production, development, none 세가지 옵션을 사용할 수 있는데 사용한 옵션에 따라 웹팩에서 내부적으로 최적화를 해준다.<br /><br />
+entry: 번들링을 시작할 파일을 결정할 수 있다. 멀티 페이지 번들링시 여러 파일을 설정할 수 있다.<br /><br />
+module: 다양한 모듈들을 처리하는 방법들을 결정한다. js파일, ts파일을 포함한 이미지파일, 스타일 파일 등 웹팩을 통해 번들링 되는 모든 파일들의 처리 방법을 설정하며 좀전에 설정한 바벨 또한 이 곳에서 설정한다. module을 설정할 때 중요한 부분은 loader를 읽을때 오른쪽에서 왼쪽으로 loader가 실행되기 때문에 sass-loader의 경우 css-loader보다 오른쪽에 위치시켜야 한다. (typescript의 경우에는 babel-loader 오른쪽에 ts-loader를 위치시켜야 한다.)<br /><br />
+devServer: 개발 서버에 대한 설정을 할 수 있다. 에러처리, 포트 설정, 기본 path 등 여러 옵션을 설정할 수 있다.<br /><br />
+output: 웹팩을 통해 최종적으로 번들링 된 파일을 저장할 위치를 설정한다.<br /><br />
+plugins: 웹팩에 적용할 플러그인들을 설정한다.
+
+<br />
+추가적으로 package.json에 scripts를 작성
+```tsx
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve --mode development"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1",
+    "sass": "^1.34.1",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
+```
+<br />
+이후 build와 start

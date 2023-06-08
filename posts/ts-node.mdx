@@ -1,0 +1,22 @@
+---
+title: ts-node
+date: 2023-04-28
+description: ts-node 설정
+---
+
+ts-node 실행하기 전에 tsconfig.json ts-node부분에서 compilerOptions에 "types": ["node"]를 추가해준다.
+
+<br />
+<br />
+
+```tsx
+ "ts-node": {
+    // "esm": true,
+    // "require": ["tsconfig-paths/register"],
+    "compilerOptions": {
+      // "moduleResolution": "node",
+      "module": "commonJS",
+      "types": ["node"]
+    }
+  }
+```

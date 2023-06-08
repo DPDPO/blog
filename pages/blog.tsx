@@ -7,6 +7,7 @@ import { Post, allPosts } from "contentlayer/generated";
 import { InferGetStaticPropsType } from "next";
 import React, { ChangeEvent, useState } from "react";
 import { SearchInput } from "components/Input";
+import Paginate from "components/Pagination";
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [search, setSearch] = useState<string>("");
@@ -21,21 +22,18 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           글 목록 <span style={{ color: "skyblue" }}>({posts.length}) </span>
         </div>
         <SearchInput onChange={handleSearch} />
-        {/* {posts.map((post) => (
-          <BlogPost
-            date={post.date}
-            title={post.title}
-            des={post.description}
-            slug={post._raw.flattenedPath}
-            key={post._id}
-          />
-        ))} */}
       </div>
       <PostList
         posts={(posts as Post[]).filter((post) =>
           post.title.toLowerCase().includes(search)
         )}
       />
+      {/* <Paginate
+        totalCount={posts}
+        page={undefined}
+        setPage={undefined}
+        postPerPage={undefined}
+      /> */}
     </Container>
   );
 };
