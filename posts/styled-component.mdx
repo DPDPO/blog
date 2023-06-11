@@ -1,0 +1,26 @@
+---
+title: npm ERR! Cannot read properties of null (reading 'edgesOut')
+date: 2023-06-11
+description: styled-components error
+---
+
+Styled-Components를 설치 하려 했는데 뜬 오류다.
+
+npm install styled-components 이렇게 설치하게 되면
+npm ERR! Cannot read properties of null (reading 'edgesOut') 이렇게 문구가 뜬다
+
+<br />
+<br />
+검색해보니 styled-components version6 이후로 다음 명령어시 문제가 발생한다고
+한다. 여러가지 방법이 있는데
+<br />
+**Use V5**
+<br /> npm install styled-components@5.3.10
+<br /> **Use yarn**
+<br /> yarn install styled-components
+<br /> **To use the beta version**
+<br /> npm install styled-components@latest
+
+<br />
+
+셋중에 하나 선택해서 입력하면 된다.
