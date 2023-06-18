@@ -15,7 +15,7 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     <Container>
       <div className={`mt-10 flex flex-col`}>
         <div className="ml-1 mb-3">
-          글 목록 <span style={{ color: "skyblue" }}>({posts.length}) </span>
+          <span style={{fontWeight:"700"}}>전체 글 목록</span> <span style={{ color: "skyblue" }}>({posts.length}) </span>
         </div>
         <div className="mb-4">
           <SearchInput onChange={handleSearch} />

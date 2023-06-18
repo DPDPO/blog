@@ -6,6 +6,7 @@ import proxyMdx from './Proxy.mdx.json' assert { type: 'json' }
 import reduxMdx from './Redux.mdx.json' assert { type: 'json' }
 import aTagMdx from './aTag.mdx.json' assert { type: 'json' }
 import buildMdx from './build.mdx.json' assert { type: 'json' }
+import chartMdx from './chart.mdx.json' assert { type: 'json' }
 import cssMdx from './css.mdx.json' assert { type: 'json' }
 import deployMdx from './deploy.mdx.json' assert { type: 'json' }
 import deployErrorMdx from './deployError.mdx.json' assert { type: 'json' }
@@ -22,4 +23,4 @@ import usemutationMdx from './usemutation.mdx.json' assert { type: 'json' }
 import vercelMdx from './vercel.mdx.json' assert { type: 'json' }
 import webpackMdx from './webpack.mdx.json' assert { type: 'json' }
 
-export const allPosts = [iconsMdx, lighthouseMdx, proxyMdx, reduxMdx, aTagMdx, buildMdx, cssMdx, deployMdx, deployErrorMdx, envMdx, eslintMdx, nextImageMdx, nextVersionMdx, paginationMdx, reactHookFormMdx, sessionMdx, styledComponentMdx, tsNodeMdx, usemutationMdx, vercelMdx, webpackMdx]
+export const allPosts = [iconsMdx, lighthouseMdx, proxyMdx, reduxMdx, aTagMdx, buildMdx, chartMdx, cssMdx, deployMdx, deployErrorMdx, envMdx, eslintMdx, nextImageMdx, nextVersionMdx, paginationMdx, reactHookFormMdx, sessionMdx, styledComponentMdx, tsNodeMdx, usemutationMdx, vercelMdx, webpackMdx]
