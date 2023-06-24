@@ -39,7 +39,7 @@ const { data, status } = useQuery(["todos", id], () => fetchByParam(id));
 
 ```tsx
 const { data, status } = useQuery(["todos", id], () => {
-  return fetchByParam(id); // Promise 를 리턴!!! 해줘야 한다.
+  return fetchByParam(id);
 });
 ```
 
