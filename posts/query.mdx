@@ -1,0 +1,54 @@
+---
+title: Query data cannot be undefined
+date: 2023-06-24
+description: React-Query
+---
+
+**Query data cannot be undefined 에러 발생 이유**
+
+<br />
+
+React-Query에서 useQuery를 아래와 같이 사용하면 에러가 발생할 수 있다.
+
+```tsx
+const { data, status } = useQuery(["todo", id], () => {
+  fetchByParam(id);
+});
+```
+
+useQuery에 등록한 함수가 Promise를 반환하지 않아서 오류가 난다.
+
+<br />
+<br />
+Query data cannot be undefined 해결 방법 해결방법은 Promise 반환하도록 해주면
+된다.
+
+화살표함수 문법으로 바로 리턴하거나, 중괄호 내부에서 명시적으로 리턴해주면 된다.
+
+<br />
+1. 화살표 함수로 바로 리턴한다.
+
+- "중괄호 없이" 화살표함수를 사용해서 바로 리턴하는 것에 유의하자.
+
+```tsx
+const { data, status } = useQuery(["todos", id], () => fetchByParam(id));
+```
+
+<br />
+2. 중괄호 내부에서 명시적으로 return문을 써준다.
+
+```tsx
+const { data, status } = useQuery(["todos", id], () => {
+  return fetchByParam(id); // Promise 를 리턴!!! 해줘야 한다.
+});
+```
+
+<br />
+2번과 같은 케이스를 응용하면, 아래와 같이 async/await 를 사용할 수 있다.
+
+```tsx
+useQuery(["todos", id], async () => {
+  const data = await fetchByParam(id);
+  return data;
+});
+```
