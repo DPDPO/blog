@@ -1,0 +1,40 @@
+---
+title: Weather APP
+date: 2023-07-18
+description: Weather API
+---
+
+React Native를 사용해서 날씨 앱을 만드는데<br />
+**[https://openweathermap.org/api](https://openweathermap.org/api)** 여기 API를 이용했다.
+
+<br />
+One Call API 3.0를 사용하려 했지만 유료여서<br />
+5 Day / 3 Hour Forecast를 썼다<br />
+<br />
+```tsx
+api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+```
+를 쓰면 되는데 공식문서 보면서 사용할 기능들이 있는지 확인하면된다.<br />
+<br />
+<br />
+온도가 이상한 단위로 나오니 &units=metric 쓰는걸 추천한다.<br />
+```tsx
+
+`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&
+
+````
+```tsx
+ lon=${longitude}&appid=${API_KEY}&units=metric`
+
+````
+
+<br />
+<br />
+소숫점은 두자리수가 나와서 보기좋게 아래와 같이 한자리 수로 고정해 줬다.
+<br />
+
+```tsx
+{
+  parseFloat(day.main.temp).toFixed(1);
+}
+```
