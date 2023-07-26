@@ -1,0 +1,68 @@
+---
+title: React Native , expo
+date: 2023-07-26
+description: Api , Error
+---
+
+expo 명령어 변경<br/>
+expo init => npx create-expo-app 앱이름<br />
+expo login => npx expo login
+
+<br />
+<br />
+
+React Native에서 TextInput 컴포넌트는 여러가지 설정을 할 수 있다.
+
+<br />
+**keyboardType** : 자판타입 변경.
+
+<br />
+**secureTextEntry**:비밀번호처럼 입력판에 안보이게 설정.
+<br />
+**multiline** : 줄바꿈 설정
+<br />
+**autoCapitalize** : 대문자 설정
+<br />
+**blurOnSubmit** : enter 이후 자판유지
+<br />
+**onSubmitEditing** : enter 자판 이름설정
+<br />
+
+<br />
+<br />
+
+브라우저에서 Storage에 저장할때는 localStorage를 사용했는데
+React Native에서는 AsyncStorage를 사용한다.
+
+<br />
+```tsx
+const load = async () => {
+  try {
+    const s = await AsyncStorage.getItem(STORAGE_KEY);
+    setToDos(JSON.parse(s));
+  } catch (e) {
+    alert("다시 시도해주세요.");
+  }
+};
+```
+
+<br />
+다른점은 이런식으로 async와 await를 써줘야된다.
+<br />
+<br />
+
+useEffect를 활용하여 처음 값을 불러올때 null 상태면 오류가 날 수 있으니
+
+```tsx
+const load = async () => {
+  try {
+    const s = await AsyncStorage.getItem(STORAGE_KEY);
+    s !== null ? setToDos(JSON.parse(s)) : null;
+  } catch (e) {
+    alert("다시 시도해주세요.");
+  }
+};
+```
+
+<br />
+삼항연산자를 사용해준다.
