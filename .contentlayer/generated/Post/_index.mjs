@@ -23,9 +23,10 @@ import scssMdx from './scss.mdx.json' assert { type: 'json' }
 import sessionMdx from './session.mdx.json' assert { type: 'json' }
 import styledComponentMdx from './styled-component.mdx.json' assert { type: 'json' }
 import tsNodeMdx from './ts-node.mdx.json' assert { type: 'json' }
+import typescriptMdx from './typescript.mdx.json' assert { type: 'json' }
 import usemutationMdx from './usemutation.mdx.json' assert { type: 'json' }
 import vercelMdx from './vercel.mdx.json' assert { type: 'json' }
 import weatherMdx from './weather.mdx.json' assert { type: 'json' }
 import webpackMdx from './webpack.mdx.json' assert { type: 'json' }
 
-export const allPosts = [iconsMdx, lighthouseMdx, proxyMdx, reduxMdx, aTagMdx, buildMdx, chartMdx, cssMdx, deployMdx, deployErrorMdx, envMdx, eslintMdx, lodashMdx, nextImageMdx, nextVersionMdx, paginationMdx, queryMdx, reactNativeMdx, reactHookFormMdx, scssMdx, sessionMdx, styledComponentMdx, tsNodeMdx, usemutationMdx, vercelMdx, weatherMdx, webpackMdx]
+export const allPosts = [iconsMdx, lighthouseMdx, proxyMdx, reduxMdx, aTagMdx, buildMdx, chartMdx, cssMdx, deployMdx, deployErrorMdx, envMdx, eslintMdx, lodashMdx, nextImageMdx, nextVersionMdx, paginationMdx, queryMdx, reactNativeMdx, reactHookFormMdx, scssMdx, sessionMdx, styledComponentMdx, tsNodeMdx, typescriptMdx, usemutationMdx, vercelMdx, weatherMdx, webpackMdx]

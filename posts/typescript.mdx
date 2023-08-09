@@ -1,0 +1,52 @@
+---
+title: Type 'HTMLImageElement | null' is not assignable to type 'never'.
+date: 2023-08-09
+description: TypeScript
+---
+
+HTMLImageElement에서 ref 속성을 주려고 하니 not assignable to type 'never'라고 경고가 뜬다.
+
+<br />
+```tsx
+<LayoutScreen
+ ref={el => (screens.current[data.id] =el)}
+>
+```
+<br />
+Type 'HTMLImageElement | null' is not assignable to type 'never'.
+Type 'null' is not assignable to type 'never' ts(2322) [39,27]
+<br />
+<br />
+
+```tsx
+const screens = useRef([]);
+```
+
+<br />
+array 타입을 정확히 지정하지 않고 <br />
+그냥 빈 배열을 할당해서 자동으로 never[]가 된게 문제였다.
+
+<br />
+<br />
+
+**방법**<br />
+useRef에 들어올 요소에 맞춰 타입을 지정해 준다.<br />
+useState, useRef등 hooks는 일반 변수처럼 useRef: Type 형태가 아니라
+
+```tsx
+useRef<Type>;
+```
+
+형태로 명시해야 한다.
+
+<br />
+<br />
+
+```tsx
+useRef<Array<HTMLImageElement | null>>([]);
+```
+
+<br />
+
+"Type 'HTMLImageElement | null' is not assignable to type 'never'." 에러 문구에서 HTMLImageElement
+또는 null을 담는 배열로 지정하니 해결됐다.
