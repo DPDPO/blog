@@ -1,0 +1,75 @@
+---
+title: react-spring library
+date: 2023-08-18
+description: animation
+---
+
+자연스러운 애니메이션으로 UI 및 상호 작용을 할 수 있고<br />
+React, React-Native, React-Native-Web 에서 모두 사용 가능하다.
+
+<br />
+
+설치<br />
+npm i @react-spring/web<br />
+yarn add @react-spring/web
+
+<br />
+react-spring은 5개의 훅으로 이루어져있다. <br />
+이 훅 5개를 사용할 줄 알면 react-spring을 쓰는데 문제 없다. <br />
+각 훅마다 공식링크를 달아 놓고 확인하면서 사용했다.
+<br />
+
+[**useSpring**](https://www.react-spring.dev/docs/components/use-spring) : data를 a에서 b로 이동시키는 spring <br />
+[**useSprings**](https://www.react-spring.dev/docs/components/use-springs) : multiple spring <br />
+[**useTrail**](https://www.react-spring.dev/docs/components/use-trail) : 단일 dataset을 위한 multiple spring. 하나의 spring을 다른 것들이 따라간다. <br />
+[**useTransition**](https://www.react-spring.dev/docs/components/use-transition) : 트랜지션의 mount/unmount을 위해 사용. <br />
+[**useChain**](https://www.react-spring.dev/docs/components/use-chain) : 여러 애니메이션을 중첩하여 적용하거나, 순차적으로 적용하기 위해 사용 <br />
+
+<br />
+<br />
+```tsx
+(ex)
+const Animation = () => {
+  const [flipped, set] = useState(false);
+  const [tab, setTab] = useState(0);
+  const { transform, opacity } = useSpring({
+    opacity: flipped ? 1 : 0,
+    transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
+    config: { mass: 5, tension: 500, friction: 80 }, 
+  });
+    ...
+return(
+    ...
+   <animated.div
+                className={`${styles.c}`}
+                style={{
+                  opacity,
+                  transform,
+                  rotateX: "180deg",
+                }}
+              >
+                <img
+                  className="img"
+                  width="1000px"
+                  onClick={() => set((state) => !state)}
+                  alt="2"
+                  src={
+                    process.env.PUBLIC_URL +
+                    "/images/nicolas-houdayer-qMDhXONZdXk-unsplash.jpg"
+                  }
+                />
+              </animated.div>
+    ...
+ )
+}
+```
+<br />
+
+예시코드에서 native tag를 extends 한 것으로, animated.tag 꼴로 사용해줌. ex - animated.div, animated.span, animated.svg ...<br />
+
+<br />
+만약 React Component를 animated하게 확장하고 싶다면 animated(App), animated(Login)
+과 같이 단순히 ()로 감싸면 된다.
+<br />
+css-in-js인 styled-components나 emotion 등을 확장하려면 const AnimatedHeader = styled(animated.h1)
+꼴로 사용하면 된다.
